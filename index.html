@@ -1,21 +1,1239 @@
 <!DOCTYPE html>
-<html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║         INVITACIÓN DIGITAL - QUINCE AÑOS DE SOFÍA RAMÍREZ           ║
+  ║                                                                      ║
+  ║  Este archivo es la versión en HTML puro del proyecto original       ║
+  ║  que estaba hecho con React + TypeScript + Tailwind CSS.             ║
+  ║                                                                      ║
+  ║  Aquí encontrarás comentarios que explican:                          ║
+  ║   → Qué hace cada sección                                            ║
+  ║   → Qué variables y clases puedes cambiar                            ║
+  ║   → Cómo funciona la lógica de JavaScript                            ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="es">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <title>Kamila invitacion</title>
-</head >
-<body style="text-align: center;">
-    <h1 style="font-family: 'Lobster Two', cursive;">
-    Te invito a vivir una noche llena de luz y emoción
-    </h1>
-    <h2>MIS XV AÑOS
-        KAMILA
-    </h2>
-    <h3></h3>
-    contenido de la invitacion
-    cambio jeejejejje
-</body>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- ─── TÍTULO DE LA PÁGINA (aparece en la pestaña del navegador) ─── -->
+  <!-- 📝 CAMBIA AQUÍ: escribe el nombre de la quinceañera -->
+  <title>Mis 15 Años - Kamila Nahomy</title>
+
+  <!-- ─── FUENTES DE GOOGLE FONTS ─── -->
+  <!--
+    Estamos importando dos fuentes:
+    - "Cormorant Garamond": fuente elegante estilo serif, usada para títulos
+    - "Raleway": fuente moderna y legible, usada para textos generales
+    📝 CAMBIA AQUÍ: busca otras fuentes en https://fonts.google.com
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- ─── ICONOS (Lucide) ─── -->
+  <!-- Esta librería nos da iconos SVG listos para usar como: Music, MapPin, CheckCircle, Upload -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+    /* ══════════════════════════════════════════════════════
+       VARIABLES CSS - EL CORAZÓN DEL DISEÑO
+       ══════════════════════════════════════════════════════
+       Las "variables CSS" (también llamadas "custom properties")
+       son valores reutilizables. Si cambias uno aquí,
+       se actualiza en TODA la página automáticamente.
+
+       📝 CAMBIA AQUÍ para modificar el esquema de colores:
+    */
+    :root {
+      --color-fondo-principal: #0A0E1A;      /* Azul muy oscuro - fondo de toda la página */
+      --color-fondo-tarjeta: #0F1729;        /* Azul oscuro - fondo de cada sección/tarjeta */
+      --color-acento-azul: #4169E1;          /* Azul royal - botones y detalles */
+      --color-acento-azul-hover: #3558C7;    /* Azul más oscuro para el efecto hover */
+      --color-plata: #C0C0C0;                /* Plateado - subtítulos y textos secundarios */
+      --color-blanco: #FFFFFF;               /* Blanco puro - textos principales */
+      --color-borde: rgba(65, 105, 225, 0.2);/* Borde azul translúcido para las tarjetas */
+      
+      --fuente-titulo: 'Cormorant Garamond', serif;   /* Fuente elegante para títulos */
+      --fuente-texto: 'Raleway', sans-serif;           /* Fuente moderna para párrafos */
+
+      --radio-borde: 1rem;   /* Qué tan redondeadas son las esquinas de las tarjetas */
+      --sombra-tarjeta: 0 20px 40px rgba(0, 0, 0, 0.4); /* Sombra debajo de las tarjetas */
+    }
+
+    /* ══════════════════════════════════════════════════════
+       ESTILOS BASE / RESET
+       ══════════════════════════════════════════════════════
+       Reglas generales que afectan a toda la página.
+       "box-sizing: border-box" hace que el padding no
+       agrande los elementos (comportamiento más predecible).
+    */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--fuente-texto);
+      background-color: var(--color-fondo-principal);
+      color: var(--color-blanco);
+      overflow-x: hidden; /* Evita scroll horizontal indeseado */
+      min-height: 100vh;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       FONDO ANIMADO CON ESTRELLAS
+       ══════════════════════════════════════════════════════
+       Este div está fijo en la pantalla y contiene las
+       pequeñas estrellas parpadeantes del fondo.
+       "position: fixed" hace que no se mueva al hacer scroll.
+       "pointer-events: none" permite hacer clic "a través" de él.
+    */
+    .fondo-estrellas {
+      position: fixed;
+      inset: 0; /* equivale a: top:0; right:0; bottom:0; left:0 */
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Cada estrella es un div pequeño y redondo */
+    .estrella {
+      position: absolute;
+      border-radius: 50%; /* Hace el div un círculo perfecto */
+      animation: parpadeo 2s infinite alternate; /* Animación de parpadeo en bucle */
+    }
+
+    /* ─── Animación de parpadeo ─── */
+    /* "keyframes" define los estados de una animación */
+    @keyframes parpadeo {
+      from { opacity: 0.3; transform: scale(0.8); }
+      to   { opacity: 1;   transform: scale(1.2); }
+    }
+
+    /* Brillo de fondo difuso (los "blobs" de color) */
+    .brillo-fondo {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(74px); /* Difumina mucho el círculo para crear un "glow" */
+      opacity: 0.56;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       CONTENIDO PRINCIPAL
+       ══════════════════════════════════════════════════════
+       "z-index: 1" pone este contenido ENCIMA del fondo de estrellas.
+    */
+    .contenido-principal {
+      /*background-image: url("https://www.dropbox.com/scl/fi/8n7n117g2zymtrxfrqm4h/Black-and-White-Monochrome-Illustrative-Birthday-Celebrations-Presentation-400-x-680-px.png?rlkey=c76rgjtlja4syft8n9zcslb7e&st=p2nc4kdb&dl=1");*/
+      position: relative
+      z-index: 1;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       ESTILOS DE LAS SECCIONES
+       ══════════════════════════════════════════════════════
+       Cada sección tiene padding (espacio interno) arriba y abajo.
+       "padding: 4rem 1.5rem" = 64px arriba/abajo, 24px izquierda/derecha
+    */
+    .seccion {
+      padding: 4rem 1.5rem;
+    }
+
+    /* Contenedor centralizado con ancho máximo */
+    /* 📝 CAMBIA "max-width" para hacer las tarjetas más anchas o angostas */
+    .contenedor {
+      max-width: 28rem; /* 448px */
+      margin: 0 auto;   /* Centra el contenedor horizontalmente */
+    }
+
+    .contenedor-mediano {
+      max-width: 40rem; /* 640px - para secciones más anchas como la galería */
+      margin: 0 auto;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       TARJETA (componente visual reutilizable)
+       ══════════════════════════════════════════════════════
+       Las "tarjetas" son los bloques con fondo oscuro y borde
+       que contienen cada sección del contenido.
+    */
+    
+    .tarjeta {
+      border-radius: var(--radio-borde);
+      border: 1px solid var(--color-borde);
+      box-shadow: var(--sombra-tarjeta);
+      padding: 2rem;
+      text-align: center;
+    }
+    /*.tarjeta {
+      background-color: var(--color-fondo-tarjeta);
+      border-radius: var(--radio-borde);
+      border: 1px solid var(--color-borde);
+      box-shadow: var(--sombra-tarjeta);
+      padding: 2rem;
+      text-align: center;
+    }*/
+
+    /* ══════════════════════════════════════════════════════
+       TIPOGRAFÍA - TÍTULOS Y TEXTOS
+       ══════════════════════════════════════════════════════
+    */
+    .titulo-seccion {
+      font-size: 1.18remm;    /* 30px */
+      color:#6ed5ff;
+      text-align: center;
+      letter-spacing: 0.05em; /* Espaciado entre letras */
+      margin-bottom: 1rem;
+      font-weight:0;
+    }
+
+    .texto-destacado {
+      color: var(--color-plata);
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+
+    .texto-principal {
+      color: var(--color-blanco);
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       BOTONES
+       ══════════════════════════════════════════════════════
+       "transition" crea la animación suave cuando el cursor pasa encima.
+       "border-radius: 9999px" hace el botón completamente ovalado (pill).
+    */
+    .boton-principal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;             /* Espacio entre el icono y el texto */
+      padding: 0.875rem 1.5rem;
+      background-color: var(--color-acento-azul);
+      color: var(--color-blanco);
+      border: none;
+      border-radius: 9999px;   /* Completamente redondeado */
+      font-size: 1rem;
+      font-family: var(--fuente-texto);
+      cursor: pointer;
+      text-decoration: none;
+      width: 100%;             /* Ocupa todo el ancho del contenedor */
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .boton-principal:hover {
+      background-color: var(--color-acento-azul-hover);
+      box-shadow: 0 8px 25px rgba(65, 105, 225, 0.3); /* Sombra azul en hover */
+    }
+
+    /* Botón especial para música (con ancho automático) */
+    .boton-musica {
+      width: auto;
+      margin: 0 auto;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SECCIÓN HERO (portada principal)
+       ══════════════════════════════════════════════════════
+       "min-height: 100vh" hace que ocupe toda la pantalla.
+       "flex + center" centra el contenido vertical y horizontalmente.
+    */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+
+    .hero-contenido {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── Texto introductorio del Hero ─── */
+    /* 📝 CAMBIA "content" para modificar el texto de apertura */
+    .hero-subtitulo {
+      font-size: 1.1rem;
+      color: var();
+      letter-spacing: 0em;
+      line-height: 1.7;
+      max-width: 30rem;
+      font-weight: 500;
+      margin: 0 auto 1rem;
+    }
+
+    /* ─── Título principal "Mis 15 años" ─── */
+    /* 📝 CAMBIA el "font-size" para agrandar o achicar el título */
+    .hero-titulo {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(3rem, 10vw, 4.5rem); /* clamp = mínimo, fluido, máximo */
+      color: var(--color-blanco);
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+      line-height: 1.1;
+    }
+
+    /* ─── Nombre de la quinceañera ─── */
+    /* 📝 CAMBIA el nombre en el HTML más abajo */
+    .hero-nombre {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(2.5rem, 8vw, 3.5rem);
+      color: var(--color-blanco);
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+    }
+
+    .hero-botones {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SECCIÓN FECHA DEL EVENTO
+       ══════════════════════════════════════════════════════
+    */
+    .fecha-dia {
+      font-size: 1.25rem;
+      color: var(--color-plata);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* Número del día (el "15" grande) */
+    /* 📝 CAMBIA "font-size" para agrandarlo o achicarlo */
+    .fecha-numero {
+      font-family: var(--fuente-titulo);
+      font-size: 6rem; /* 96px */
+      color: var(--color-blanco);
+      line-height: 1;
+    }
+
+    .fecha-mes-anio {
+      font-size: 1.5rem;
+      color: var(--color-plata);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SECCIÓN CUENTA REGRESIVA
+       ══════════════════════════════════════════════════════
+       Muestra días, horas y minutos que faltan para el evento.
+       El cálculo lo hace JavaScript (ver al final del archivo).
+    */
+    .cuenta-regresiva-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+      gap: 1rem;
+    }
+
+    .cuenta-regresiva-item {
+      background-color: var(--color-fondo-tarjeta);
+      border-radius: 0.75rem;
+      border: 1px solid var(--color-borde);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    /* Número grande (días, horas, minutos) */
+    .cuenta-numero {
+      font-size: 3rem;
+      color: var(--color-blanco);
+      display: block;
+      margin-bottom: 0.25rem;
+      font-family: var(--fuente-titulo);
+    }
+
+    .cuenta-etiqueta {
+      color: var(--color-plata);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SECCIÓN IGLESIA Y SALÓN
+       ══════════════════════════════════════════════════════
+    */
+    .lugar-nombre {
+      font-size: 1.25rem;
+      color: var(--color-blanco);
+    }
+
+    .lugar-hora {
+      font-size: 1.125rem;
+      color: var(--color-acento-azul);
+      margin-top: 0.25rem;
+    }
+
+    /* Contenedor de la imagen del lugar */
+    .imagen-lugar {
+      border-radius: 0.75rem;
+      overflow: hidden;  /* Oculta lo que sobresalga del borde redondeado */
+      margin: 1.25rem 0;
+    }
+
+    .imagen-lugar img {
+      width: 100%;
+      height: 16rem; /* 256px */
+      object-fit: cover; /* Recorta la imagen para que llene el espacio */
+      display: block;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       GALERÍA DE FOTOS
+       ══════════════════════════════════════════════════════
+       Usamos un "carrusel" manual con JavaScript.
+       Las fotos se agrupan de a 3 (un collage por slide).
+    */
+    .galeria-carrusel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Contenedor que desliza horizontalmente */
+    .galeria-pista {
+      display: flex;
+      transition: transform 0.5s ease; /* Animación suave al cambiar de slide */
+    }
+
+    .galeria-slide {
+      min-width: 100%; /* Cada slide ocupa todo el ancho */
+      outline: none;
+    }
+
+    /* Layout del collage: 2 columnas */
+    .collage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0.75rem;
+      height: 30rem;
+    }
+
+    /* Primera imagen: ocupa toda la altura (las 2 filas) */
+    .collage-foto-principal {
+      grid-row: 1 / 3; /* Desde fila 1 hasta fila 3 (ocupa ambas) */
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .collage-foto-secundaria {
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .collage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ─── Puntos indicadores del carrusel ─── */
+    .galeria-puntos {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .galeria-punto {
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 50%;
+      background-color: var(--color-plata);
+      border: none;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s, background-color 0.2s;
+    }
+
+    /* El punto del slide activo se ilumina */
+    .galeria-punto.activo {
+      background-color: var(--color-acento-azul);
+      opacity: 1;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       PLAYLIST DE SPOTIFY
+       ══════════════════════════════════════════════════════
+       Usamos un "iframe" para incrustar el reproductor de Spotify.
+       📝 CAMBIA "src" en el HTML para poner tu propia playlist.
+       Para obtener el código embed: abre Spotify → playlist → 
+       botón "..." → Compartir → Insertar lista de reproducción
+    */
+    .playlist-iframe {
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .playlist-iframe iframe {
+      display: block;
+      border-radius: 0.75rem;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       CÓDIGO DE VESTIMENTA
+       ══════════════════════════════════════════════════════
+    */
+    .vestimenta-imagen {
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .vestimenta-imagen img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .vestimenta-texto {
+      text-align: center;
+      color: var(--color-plata);
+      margin-top: 1.5rem;
+      font-size: 1.125rem;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       SECCIÓN DE AGRADECIMIENTO
+       ══════════════════════════════════════════════════════
+    */
+    .gracias-mensaje {
+      color: var(--color-acento-azul);
+      font-family: var(--fuente-titulo);
+      font-size: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       DISEÑO RESPONSIVO
+       ══════════════════════════════════════════════════════
+       "@media" permite aplicar estilos solo en ciertos tamaños.
+       "min-width: 640px" = estos estilos aplican en pantallas
+       más anchas que 640px (tablets y escritorio).
+    */
+    @media (min-width: 640px) {
+      .hero-subtitulo { font-size: 1.25rem; }
+      .tarjeta { padding: 2.5rem; }
+    }
+
+    /* ══════════════════════════════════════════════════════
+       ANIMACIONES DE ENTRADA
+       ══════════════════════════════════════════════════════
+       Las secciones aparecen con una animación suave al hacer scroll.
+       Esto se controla con JavaScript más abajo (IntersectionObserver).
+    */
+    .animar-entrada {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .animar-entrada.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ════════════════════════════════════════════════════════
+       FONDO ANIMADO (estrellas parpadeantes)
+       ════════════════════════════════════════════════════════
+       Este div se queda fijo mientras scrolleas.
+       Las estrellas son divs pequeños con posición absoluta.
+
+       📝 CAMBIA: añade o quita estrellas copiando/borrando líneas.
+       Las clases bg-plata y bg-azul determinan el color.
+       Los estilos "top" y "left/right" determinan la posición.
+       "animation-delay" hace que no parpadeen todas al mismo tiempo.
+  -->
+  <div class="fondo-estrellas">
+    <!-- Estrellas plateadas y azules distribuidas por la pantalla -->
+    <div class="estrella" style="width:4px; height:4px; background:#C0C0C0; top:10%; left:15%; animation-delay:0s"></div>
+    <div class="estrella" style="width:6px; height:6px; background:#4169E1; top:25%; right:20%; animation-delay:0.3s"></div>
+    <div class="estrella" style="width:4px; height:4px; background:#C0C0C0; top:45%; left:10%; animation-delay:0.6s"></div>
+    <div class="estrella" style="width:6px; height:6px; background:#4169E1; top:60%; right:15%; animation-delay:0.9s"></div>
+    <div class="estrella" style="width:4px; height:4px; background:#C0C0C0; top:80%; left:25%; animation-delay:1.2s"></div>
+    <div class="estrella" style="width:4px; height:4px; background:#4169E1; top:15%; right:30%; animation-delay:1.5s"></div>
+    <div class="estrella" style="width:6px; height:6px; background:#C0C0C0; top:35%; right:8%;  animation-delay:1.8s"></div>
+    <div class="estrella" style="width:4px; height:4px; background:#4169E1; top:70%; right:25%; animation-delay:2.1s"></div>
+    <div class="estrella" style="width:6px; height:6px; background:#C0C0C0; top:50%; left:5%;  animation-delay:2.4s"></div>
+    <div class="estrella" style="width:4px; height:4px; background:#4169E1; top:90%; right:10%; animation-delay:2.7s"></div>
+
+    <!-- Brillos difusos de fondo (los "blobs" de color) -->
+    <div class="brillo-fondo" style="width:24rem; height:24rem; background:#4169E1; top:20%; left:50%; transform:translateX(-50%)"></div>
+    <div class="brillo-fondo" style="width:20rem; height:20rem; background:#C0C0C0; bottom:10%; right:30%"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       CONTENIDO PRINCIPAL
+       ════════════════════════════════════════════════════════ -->
+  <div class="contenido-principal">
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 1: HERO (Portada)                          │
+         │                                                     │
+         │  Es la primera pantalla que ve el usuario.          │
+         │  Ocupa toda la altura del viewport (100vh).         │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="hero animar-entrada">
+        
+      <div class="hero-contenido">
+        
+        <!-- Texto de apertura -->
+        <!-- 📝 CAMBIA: modifica esta frase introductoria -->
+        <p class="hero-subtitulo">
+          Hace quince años mis padres daban gracias a Dios por mí. Hoy doy gracias a Dios por ellos, por cuidarme y aconsejarme.</p>
+
+        <!-- Título principal -->
+        <h1 class="hero-titulo">Mis 15 años</h1>
+        <img src="https://www.dropbox.com/scl/fi/uua72o01q357c4pcl5yhv/Black-and-White-Monochrome-Illustrative-Birthday-Celebrations-Presentation-6.png?rlkey=5z4na2z6b6x0m5go95j8tsd5f&st=i7a2l278&dl=1" width=400>
+
+        <!-- 📝 CAMBIA: escribe el nombre de la quinceañera aquí -->
+        <p class="hero-nombre">Kamila Nahomy</p>
+
+        <!-- Botón de música -->
+        <!--
+          El botón llama a la función "alternarMusica()" (definida en JS).
+          El atributo "id" le da una identidad única para que JS lo encuentre.
+        -->
+        <div class="hero-botones">
+          <button
+            id="boton-musica"
+            class="boton-principal boton-musica"
+            onclick="alternarMusica()"
+          >
+            <!-- El icono cambia entre "música" y "pausa" según el estado -->
+            <i data-lucide="music" id="icono-musica" style="width:20px;height:20px"></i>
+            <span id="texto-musica">Stop</span>
+          </button>
+        </div>
+
+        <!--
+          Elemento de audio oculto.
+          📝 CAMBIA: reemplaza el "src" con la URL de tu canción.
+          Formatos soportados: .mp3, .ogg, .wav
+          Puedes subir el audio a Google Drive y usar el link directo.
+        -->
+        <audio id="audio-fondo" loop>
+        <source src="https://www.dropbox.com/scl/fi/au0qsluhcju8k15v18d1q/audio_k2.mp3?rlkey=mpwyxle6f819cfy9h97jbgtmb&st=d8wewnlj&dl=1" type="audio/mpeg">
+        </audio>
+
+      </div>
+      <p class="hero-subtitulo">
+      Hoy quiero que seas parte de esta memoria tan especial que siempre llevaré en mi corazón...</p>
+    </section>
+    <!-- FIN HERO -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 2: FECHA DEL EVENTO                        │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="seccion animar-entrada">
+      <div class="contenedor">
+        <div class="tarjeta">
+          <!-- 📝 CAMBIA: el día de la semana -->
+          <p class="fecha-dia">Sábado</p>
+
+          <!-- 📝 CAMBIA: el número del día -->
+          <p class="fecha-numero">09</p>
+
+          <!-- 📝 CAMBIA: el mes y año -->
+          <p class="fecha-mes-anio">Mayo 2026</p>
+        </div>
+      </div>
+    </section>
+    <!-- FIN FECHA -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 3: CUENTA REGRESIVA                        │
+         │                                                     │
+         │  Se actualiza automáticamente con JavaScript.       │
+         │  Los IDs "cuenta-dias", "cuenta-horas",             │
+         │  "cuenta-minutos" son los que JS actualiza.         │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="seccion animar-entrada">
+      <div class="contenedor-mediano">
+        <h2 class="titulo-seccion">Faltan..</h2>
+        <div class="cuenta-regresiva-grid">
+
+          <div class="cuenta-regresiva-item">
+            <!-- JavaScript actualiza este span cada segundo -->
+            <span class="cuenta-numero" id="cuenta-dias">0</span>
+            <span class="cuenta-etiqueta">Días</span>
+          </div>
+
+          <div class="cuenta-regresiva-item">
+            <span class="cuenta-numero" id="cuenta-horas">0</span>
+            <span class="cuenta-etiqueta">Horas</span>
+          </div>
+
+          <div class="cuenta-regresiva-item">
+            <span class="cuenta-numero" id="cuenta-minutos">0</span>
+            <span class="cuenta-etiqueta">Minutos</span>
+          </div>
+
+        </div>
+      </div>
+        <div class="contenedor-mediano"><h3 class="titulo-seccion">Para este día tan especial</h3></div>
+    </section>
+    <!-- FIN CUENTA REGRESIVA -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 4: CEREMONIA RELIGIOSA (Iglesia)           │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="seccion animar-entrada">
+      <div class="contenedor">
+        <div class="tarjeta" style="padding:0; overflow:hidden;">
+          <div style="padding:2rem; text-align:center;">
+
+            <h2 class="titulo-seccion" style="margin-bottom:1.25rem">Misa</h2>
+
+            <!-- 📝 CAMBIA: nombre de la iglesia -->
+            <p class="lugar-nombre">Parroquia: Señor de la Salud</p>
+
+            <!-- 📝 CAMBIA: hora de la ceremonia -->
+            <p class="lugar-hora">18:00 pm</p>
+
+            <!-- Imagen de la iglesia -->
+            <!-- 📝 CAMBIA: reemplaza el "src" con una foto real de la iglesia -->
+            <div class="imagen-lugar" style="align-content: center; width:200px; margin:auto">
+              <img src="https://www.dropbox.com/scl/fi/ksaczbgopun9zxgzgz5ia/Invitaci-n-virtual-vintage-cuadrada-de-cumplea-os-blanco-y-negro.png?rlkey=p6exlhdadlyq6bvlprwium14b&st=jxsfgh1a&dl=1" alt="Imagen de la iglesia" loading="lazy">
+            </div>
+
+            <!--
+              Botón para abrir el mapa.
+              📝 CAMBIA: reemplaza el href con el link real de Google Maps.
+              Cómo obtenerlo: Busca el lugar en Google Maps → Compartir → Copiar enlace
+            -->
+            <a
+              href="https://maps.apple/p/naJT~znkSz5mLg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="boton-principal"
+            >
+              <i data-lucide="map-pin" style="width:20px;height:20px"></i>
+              Ver ubicación
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FIN IGLESIA -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 5: RECEPCIÓN (Salón de fiesta)             │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="seccion animar-entrada">
+      <div class="contenedor">
+        <div class="tarjeta" style="padding:0; overflow:hidden;">
+          <div style="padding:2rem; text-align:center;">
+
+            <h2 class="titulo-seccion" style="margin-bottom:1.25rem">Recepción</h2>
+
+            <!-- 📝 CAMBIA: nombre del salón -->
+            <p class="lugar-nombre">Salón de fiestas: Real Cristal</p>
+
+            <!-- 📝 CAMBIA: hora de inicio de la fiesta -->
+            <p class="lugar-hora">19:30 hrs</p>
+
+            <!-- 📝 CAMBIA: foto del salón -->
+            <div class="imagen-lugar">
+              <img
+                src="https://i.pinimg.com/originals/c9/c8/76/c9c8767c1bf2484235a056d84314eba5.gif"
+                alt="Salón de fiesta"
+                loading="lazy"
+                style="margin: auto; width:200px"
+              />
+            </div>
+
+            <!-- 📝 CAMBIA: link de Google Maps del salón -->
+            <a
+              href="https://maps.apple/p/_bQ65HFh4guDHT"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="boton-principal"
+            >
+              <i data-lucide="map-pin" style="width:20px;height:20px"></i>
+              Ver ubicación
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FIN RECEPCIÓN -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 6: GALERÍA DE FOTOS                        │
+         │                                                     │
+         │  Las fotos se muestran en un carrusel de collages.  │
+         │  Cada slide tiene 3 fotos organizadas en un grid.   │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="seccion animar-entrada">
+      <div class="contenedor-mediano">
+        <h2 class="titulo-seccion">Galería</h2>
+        <div class="tarjeta" style="padding:1.5rem;">
+
+          <!--
+            📝 CAMBIA LAS FOTOS:
+            El array "fotosGaleria" en el JavaScript (al final del archivo)
+            contiene todas las URLs. Reemplaza esas URLs por las tuyas.
+            Las fotos se agrupan de a 3 automáticamente.
+          -->
+          <div class="galeria-carrusel">
+            <!-- La "pista" se mueve horizontalmente -->
+            <div class="galeria-pista" id="galeria-pista">
+              <!-- Los slides se generan dinámicamente por JavaScript -->
+            </div>
+          </div>
+
+          <!-- Puntos indicadores (se generan con JS) -->
+          <div class="galeria-puntos" id="galeria-puntos"></div>
+
+        </div>
+      </div>
+    </section>
+    <!-- FIN GALERÍA -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 7: CONFIRMACIÓN DE ASISTENCIA (RSVP)       │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="seccion animar-entrada">
+      <div class="contenedor">
+        <div class="tarjeta">
+
+          <h2 class="titulo-seccion">Confirmación de Asistencia</h2>
+
+          <!-- 📝 CAMBIA: la fecha límite para confirmar -->
+          <p class="texto-principal" style="margin-bottom:2rem">
+            Tu presencia es muy importante para nosotros.
+            Por favor confirma tu asistencia antes del 1 de mayo.
+          </p>
+
+          <!--
+            📝 CAMBIA: reemplaza el href con el link real de tu formulario.
+            Puedes crear un formulario gratis en:
+            - Google Forms: forms.google.com
+            - Typeform: typeform.com
+          -->
+          <a
+            href="https://forms.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="boton-principal"
+          >
+            <i data-lucide="check-circle" style="width:20px;height:20px"></i>
+            Confirmar asistencia
+          </a>
+
+        </div>
+      </div>
+    </section>
+    <!-- FIN RSVP -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 8: COMPARTE TUS FOTOS                      │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="seccion animar-entrada">
+      <div class="contenedor">
+        <div class="tarjeta">
+
+          <h2 class="titulo-seccion">Comparte tus Fotos</h2>
+
+          <p class="texto-principal" style="margin-bottom:2rem">
+            Ayúdanos a guardar los mejores momentos de la fiesta.
+            Sube tus fotos a nuestra carpeta compartida.
+          </p>
+
+          <!--
+            📝 CAMBIA: crea una carpeta en Google Drive, compártela y
+            pega el link aquí. Guía: Drive → Nueva carpeta → Compartir →
+            "Cualquier persona con el enlace puede editar"
+          -->
+          <a
+            href="https://drive.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="boton-principal"
+          >
+            <i data-lucide="upload" style="width:20px;height:20px"></i>
+            Subir fotos
+          </a>
+
+        </div>
+      </div>
+    </section>
+    <!-- FIN COMPARTE FOTOS -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 9: PLAYLIST DE SPOTIFY                     │
+         └─────────────────────────────────────────────────────┘ 
+    <section class="seccion animar-entrada">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Playlist de la Fiesta</h2>
+        <div class="tarjeta playlist-iframe" style="padding:0; overflow:hidden;">
+          <!--
+            📝 CAMBIA el "src" por el embed de tu propia playlist.
+
+            Cómo obtener el código embed de Spotify:
+            1. Abre Spotify en el navegador
+            2. Ve a tu playlist
+            3. Haz clic en "..." (más opciones)
+            4. Selecciona "Compartir"
+            5. Copia el "Código de incrustación"
+            6. Extrae solo la URL del src=""
+
+            El ID de la playlist está en la URL después de /playlist/
+          
+          <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator"
+            width="100%"
+            height="380"
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section> -->
+    <!-- FIN PLAYLIST -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 10: CÓDIGO DE VESTIMENTA                   │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="seccion animar-entrada">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Dress Code</h2>
+        <div class="tarjeta">
+
+          <!-- 📝 CAMBIA: imagen que ilustre el estilo de ropa -->
+          <div class="vestimenta-imagen">
+            <img
+              src="https://www.dropbox.com/scl/fi/20rqjsnrzzxlr1j8d3k7f/Invitaci-n-virtual-vintage-cuadrada-de-cumplea-os-blanco-y-negro-1.png?rlkey=kaj8ozurxwcbfyh20wwu1859r&st=ar5bvdp2&dl=1"
+              alt="Código de vestimenta formal"
+              loading="lazy"
+              style="margin:auto; width: 200px"
+            />
+          </div>
+
+          <!-- 📝 CAMBIA: descripción del dress code -->
+          <p class="vestimenta-texto">Formal&nbsp;</p>
+          <p class="vestimenta-texto">Evitar colores azules, están reservados para la quinceañera.</p>
+
+        </div>
+      </div>
+    </section>
+    <!-- FIN DRESS CODE -->
+
+
+    <!-- ┌─────────────────────────────────────────────────────┐
+         │  SECCIÓN 11: AGRADECIMIENTO (ThankYou)             │
+         └─────────────────────────────────────────────────────┘ -->
+    <section class="seccion animar-entrada" style="padding-bottom:6rem">
+      <div class="contenedor">
+        <div class="tarjeta">
+
+          <h2 class="titulo-seccion">¡Gracias!</h2>
+
+          <!-- 📝 CAMBIA: mensaje de agradecimiento -->
+          <p class="texto-principal" style="margin-bottom:1rem">
+            Tu presencia es el mejor regalo que puedo recibir
+            en este día tan especial.
+          </p>
+
+          <p class="texto-destacado" style="margin-bottom:1rem">
+            Espero contar con tu compañía para celebrar juntos
+            este momento inolvidable.
+          </p>
+
+          <!-- Mensaje final destacado en azul -->
+          <p class="gracias-mensaje">¡Te espero con mucho cariño!</p>
+
+        </div>
+      </div>
+    </section>
+    <!-- FIN AGRADECIMIENTO -->
+
+
+  </div>
+  <!-- FIN CONTENIDO PRINCIPAL -->
+
+
+  <!-- ════════════════════════════════════════════════════════
+       JAVASCRIPT
+       ════════════════════════════════════════════════════════
+       Todo el código JS está aquí abajo, al final del body.
+       Esto es una buena práctica: el HTML carga primero,
+       y el JS se ejecuta después de que todo está visible.
+  -->
+  <script>
+    /* ══════════════════════════════════════════════════════
+       1. INICIALIZAR ICONOS DE LUCIDE
+       ══════════════════════════════════════════════════════
+       La librería Lucide convierte los atributos data-lucide="nombre"
+       en iconos SVG reales. Debemos llamar a esta función
+       cada vez que añadimos nuevos iconos al DOM.
+    */
+    lucide.createIcons();
+
+
+    /* ══════════════════════════════════════════════════════
+       2. FUNCIÓN: ALTERNAR MÚSICA
+       ══════════════════════════════════════════════════════
+       Esta función se ejecuta cuando el usuario hace clic
+       en el botón de música del Hero.
+
+       - "document.getElementById()" busca un elemento por su ID
+       - ".paused" devuelve true si el audio está pausado
+       - ".play()" reproduce el audio
+       - ".pause()" pausa el audio
+    */
+    function alternarMusica() {
+      // Obtenemos referencias a los elementos del DOM
+      var audio      = document.getElementById('audio-fondo');
+      var icono      = document.getElementById('icono-musica');
+      var textoBoton = document.getElementById('texto-musica');
+
+      if (audio.paused) {
+        // Si estaba pausado → reproducir
+        audio.play().catch(function(error) {
+          // Los navegadores bloquean el autoplay sin interacción del usuario.
+          // .catch() captura ese error silenciosamente.
+          console.log('No se pudo reproducir el audio:', error);
+        });
+        // Cambiamos el icono a "pause" y el texto del botón
+        icono.setAttribute('data-lucide', 'pause');
+        textoBoton.textContent = 'Pausar música';
+      } else {
+        // Si estaba reproduciendo → pausar
+        audio.pause();
+        // Regresamos al icono de música
+        icono.setAttribute('data-lucide', 'music');
+        textoBoton.textContent = 'Reproducir música';
+      }
+
+      // Actualizamos los iconos de Lucide para que se re-renderice el nuevo
+      lucide.createIcons();
+    }
+
+
+    /* ══════════════════════════════════════════════════════
+       3. CUENTA REGRESIVA
+       ══════════════════════════════════════════════════════
+       Calculamos cuánto tiempo falta para la fecha del evento.
+
+       📝 CAMBIA: actualiza la fecha y hora del evento
+       Formato: "AAAA-MM-DDTHH:MM:SS"
+       Ejemplo: "2026-05-15T18:00:00" = 15 de mayo de 2026 a las 18:00
+    */
+
+    // La fecha objetivo (fecha del evento)
+    var fechaEvento = new Date("2026-05-09T18:00:00").getTime();
+
+    function actualizarCuentaRegresiva() {
+      // Obtenemos la hora actual en milisegundos
+      var ahora = new Date().getTime();
+
+      // Calculamos la diferencia en milisegundos
+      var diferencia = fechaEvento - ahora;
+
+      if (diferencia > 0) {
+        // Convertimos milisegundos a días, horas y minutos
+        // 1 día = 24h × 60min × 60seg × 1000ms = 86,400,000 ms
+        var dias    = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        var horas   = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Actualizamos el HTML con los valores calculados
+        document.getElementById('cuenta-dias').textContent    = dias;
+        document.getElementById('cuenta-horas').textContent   = horas;
+        document.getElementById('cuenta-minutos').textContent = minutos;
+      } else {
+        // Si ya pasó la fecha, mostramos ceros
+        document.getElementById('cuenta-dias').textContent    = '0';
+        document.getElementById('cuenta-horas').textContent   = '0';
+        document.getElementById('cuenta-minutos').textContent = '0';
+      }
+    }
+
+    // Ejecutamos la función inmediatamente al cargar
+    actualizarCuentaRegresiva();
+
+    // "setInterval" repite la función cada 1000ms (1 segundo)
+    setInterval(actualizarCuentaRegresiva, 1000);
+
+
+    /* ══════════════════════════════════════════════════════
+       4. GALERÍA DE FOTOS (Carrusel)
+       ══════════════════════════════════════════════════════
+       Creamos un carrusel manual sin librerías externas.
+
+       📝 CAMBIA: reemplaza las URLs del array "fotosGaleria"
+       con las URLs de tus propias fotos.
+       Puedes subir las fotos a:
+       - Google Drive (obtén link de vista directa)
+       - Cloudinary (gratis para uso básico)
+       - Imgur
+    */
+    var fotosGaleria = [
+      "https://www.dropbox.com/scl/fi/ji19j1nmtk5yyge0yzenk/WhatsApp-Image-2026-03-06-at-7.51.23-PM.jpeg?rlkey=0mt4vjh15jawabbjc6a6jhk4l&st=wxt9md3s&dl=1",
+      "https://www.dropbox.com/scl/fi/jiw0rpapl4h26v8ptzoyc/WhatsApp-Image-2026-03-06-at-7.51.24-PM-1.jpeg?rlkey=nfsn2vilgnziomm1nllzyxdau&st=iep636ic&dl=1",
+      "https://www.dropbox.com/scl/fi/bl4ihd7851t9205f4aoe3/WhatsApp-Image-2026-03-06-at-7.51.24-PM-5.jpeg?rlkey=rwt014rk37gg46qzzh5ehtogv&st=afhwps38&dl=1",
+      "https://www.dropbox.com/scl/fi/9lmvuqrnjh4kv4htabkox/WhatsApp-Image-2026-03-06-at-7.51.24-PM-4.jpeg?rlkey=6avtv75ovcvra1bskyx4bdwok&st=ei2sh00r&dl=1",
+      "https://www.dropbox.com/scl/fi/67dc2h7g3d0lvil3958yo/WhatsApp-Image-2026-03-06-at-7.51.25-PM-3.jpeg?rlkey=tu47dif8uvmjagnsa03oelfnv&st=xm3fou42&dl=1",
+      "https://www.dropbox.com/scl/fi/6o5nv4ugw2jqua7qg5g7c/WhatsApp-Image-2026-03-06-at-7.51.24-PM-7.jpeg?rlkey=871j53jyu9yrua8hnpq8be6q2&st=d3275muo&dl=1"
+    ];
+
+    // ─── Agrupar fotos en grupos de 3 (para hacer collages) ───
+    var gruposFotos = [];
+    for (var i = 0; i < fotosGaleria.length; i += 3) {
+      // .slice(inicio, fin) extrae una porción del array
+      gruposFotos.push(fotosGaleria.slice(i, i + 3));
+    }
+
+    // ─── Índice del slide actual ───
+    var slideActual = 0;
+
+    // ─── Construir los slides del carrusel ───
+    var pista  = document.getElementById('galeria-pista');
+    var puntos = document.getElementById('galeria-puntos');
+
+    // Creamos un slide por cada grupo de fotos
+    gruposFotos.forEach(function(grupo, indiceGrupo) {
+      // Crear el elemento div del slide
+      var slide = document.createElement('div');
+      slide.className = 'galeria-slide';
+
+      // Construir el HTML del collage
+      // Usamos template literals (`) para escribir HTML dentro de JS
+      var htmlCollage = '<div class="collage">';
+
+      // Primera foto: ocupa ambas filas (foto grande a la izquierda)
+      if (grupo[0]) {
+        htmlCollage += '<div class="collage-foto-principal">';
+        htmlCollage += '<img src="' + grupo[0] + '" alt="Foto ' + (indiceGrupo * 3 + 1) + '" loading="lazy">';
+        htmlCollage += '</div>';
+      }
+
+      // Segunda y tercera foto: apiladas a la derecha
+      htmlCollage += '<div style="display:flex; flex-direction:column; gap:0.75rem;">';
+      if (grupo[1]) {
+        htmlCollage += '<div class="collage-foto-secundaria" style="flex:1">';
+        htmlCollage += '<img src="' + grupo[1] + '" alt="Foto ' + (indiceGrupo * 3 + 2) + '" loading="lazy">';
+        htmlCollage += '</div>';
+      }
+      if (grupo[2]) {
+        htmlCollage += '<div class="collage-foto-secundaria" style="flex:1">';
+        htmlCollage += '<img src="' + grupo[2] + '" alt="Foto ' + (indiceGrupo * 3 + 3) + '" loading="lazy">';
+        htmlCollage += '</div>';
+      }
+      htmlCollage += '</div>';
+      htmlCollage += '</div>';
+
+      slide.innerHTML = htmlCollage;
+      pista.appendChild(slide); // Añadimos el slide al carrusel
+
+      // ─── Crear el punto indicador para este slide ───
+      var punto = document.createElement('button');
+      punto.className = 'galeria-punto' + (indiceGrupo === 0 ? ' activo' : '');
+      punto.setAttribute('aria-label', 'Ir al slide ' + (indiceGrupo + 1));
+
+      // Al hacer clic en un punto, ir a ese slide
+      punto.addEventListener('click', function() {
+        irASlide(indiceGrupo);
+      });
+
+      puntos.appendChild(punto);
+    });
+
+    // ─── Función para navegar a un slide específico ───
+    function irASlide(indice) {
+      slideActual = indice;
+
+      // Mover la pista: desplazamos 100% × el número del slide
+      // translateX(-100%) mueve un slide completo hacia la izquierda
+      pista.style.transform = 'translateX(-' + (indice * 100) + '%)';
+
+      // Actualizar qué punto está activo
+      var todosPuntos = document.querySelectorAll('.galeria-punto');
+      todosPuntos.forEach(function(p, i) {
+        if (i === indice) {
+          p.classList.add('activo');
+        } else {
+          p.classList.remove('activo');
+        }
+      });
+    }
+
+    // ─── Auto-play: cambiar de slide cada 4 segundos ───
+    // "setInterval" repite la función cada 4000ms
+    setInterval(function() {
+      // Si llegamos al último slide, volvemos al primero
+      var siguienteSlide = (slideActual + 1) % gruposFotos.length;
+      irASlide(siguienteSlide);
+    }, 4000);
+
+
+    /* ══════════════════════════════════════════════════════
+       5. ANIMACIONES DE ENTRADA AL HACER SCROLL
+       ══════════════════════════════════════════════════════
+       "IntersectionObserver" detecta cuando un elemento
+       entra al área visible de la pantalla (el viewport).
+
+       Cuando una sección se vuelve visible, le añadimos
+       la clase "visible" que activa la animación CSS
+       definida en los estilos (opacity y translateY).
+    */
+    var observador = new IntersectionObserver(
+      function(entradas) {
+        // "entradas" es un array de elementos que cambiaron su visibilidad
+        entradas.forEach(function(entrada) {
+          if (entrada.isIntersecting) {
+            // El elemento es visible → añadir clase "visible"
+            entrada.target.classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1  // Se activa cuando el 10% del elemento es visible
+      }
+    );
+
+    // Observamos todos los elementos con la clase "animar-entrada"
+    var elementosAnimados = document.querySelectorAll('.animar-entrada');
+    elementosAnimados.forEach(function(el) {
+      observador.observe(el);
+    });
+
+  </script>
+
+</body>
 </html>
