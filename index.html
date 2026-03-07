@@ -54,7 +54,7 @@
       --color-fondo-tarjeta: #0F1729;        /* Azul oscuro - fondo de cada sección/tarjeta */
       --color-acento-azul: #4169E1;          /* Azul royal - botones y detalles */
       --color-acento-azul-hover: #3558C7;    /* Azul más oscuro para el efecto hover */
-      --color-plata: #C0C0C0;                /* Plateado - subtítulos y textos secundarios */
+      --color-plata: #ffffff;                /* Plateado - subtítulos y textos secundarios */
       --color-blanco: #FFFFFF;               /* Blanco puro - textos principales */
       --color-borde: rgba(65, 105, 225, 0.2);/* Borde azul translúcido para las tarjetas */
       
@@ -95,6 +95,7 @@
        "pointer-events: none" permite hacer clic "a través" de él.
     */
     .fondo-estrellas {
+        
       position: fixed;
       inset: 0; /* equivale a: top:0; right:0; bottom:0; left:0 */
       overflow: hidden;
@@ -121,7 +122,7 @@
       position: absolute;
       border-radius: 50%;
       filter: blur(74px); /* Difumina mucho el círculo para crear un "glow" */
-      opacity: 0.56;
+      opacity: 0.36;
     }
 
     /* ══════════════════════════════════════════════════════
@@ -141,8 +142,16 @@
        Cada sección tiene padding (espacio interno) arriba y abajo.
        "padding: 4rem 1.5rem" = 64px arriba/abajo, 24px izquierda/derecha
     */
+    .seccion-contador{
+      background-image: url("https://www.dropbox.com/scl/fi/giclwyzzvkxzfgz8s01t9/Invitaci-n-virtual-vintage-cuadrada-de-cumplea-os-blanco-y-negro-2.png?rlkey=4jofiuz3980rll2nr5nqntifb&st=7iwo4xxa&dl=1");
+      background-size: 600px 500px;
+      background-repeat: no-repeat;
+      background-position: top;
+      }
+      
     .seccion {
       padding: 4rem 1.5rem;
+        
     }
 
     /* Contenedor centralizado con ancho máximo */
@@ -306,10 +315,15 @@
        ══════════════════════════════════════════════════════
     */
     .fecha-dia {
+      background-color: rgba(3, 18, 64, 0.81);
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 10px;
       font-size: 1.25rem;
       color: var(--color-plata);
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      font-weight: 400;
     }
 
     /* Número del día (el "15" grande) */
@@ -322,10 +336,12 @@
     }
 
     .fecha-mes-anio {
+      
       font-size: 1.5rem;
       color: var(--color-plata);
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      font-weight: 400;
     }
 
     /* ══════════════════════════════════════════════════════
@@ -428,12 +444,12 @@
     .collage-foto-principal {
       grid-row: 1 / 3; /* Desde fila 1 hasta fila 3 (ocupa ambas) */
       border-radius: 0.75rem;
-      overflow: hidden;
+      overflow: ;
     }
 
     .collage-foto-secundaria {
       border-radius: 0.75rem;
-      overflow: hidden;
+      overflow:;
     }
 
     .collage img {
@@ -598,15 +614,15 @@
         
         <!-- Texto de apertura -->
         <!-- 📝 CAMBIA: modifica esta frase introductoria -->
-        <p class="hero-subtitulo">
-          Hace quince años mis padres daban gracias a Dios por mí. Hoy doy gracias a Dios por ellos, por cuidarme y aconsejarme.</p>
+        <div><p class="hero-subtitulo">
+          Hace quince años mis padres daban gracias a Dios por mí. Hoy doy gracias a Dios por ellos, por cuidarme y aconsejarme.</p></div>
 
         <!-- Título principal -->
         <h1 class="hero-titulo">Mis 15 años</h1>
         <img src="https://www.dropbox.com/scl/fi/uua72o01q357c4pcl5yhv/Black-and-White-Monochrome-Illustrative-Birthday-Celebrations-Presentation-6.png?rlkey=5z4na2z6b6x0m5go95j8tsd5f&st=i7a2l278&dl=1" width=400>
 
         <!-- 📝 CAMBIA: escribe el nombre de la quinceañera aquí -->
-        <p class="hero-nombre">Kamila Nahomy</p>
+        <!--<p class="hero-nombre">Kamila Nahomy</p>-->
 
         <!-- Botón de música -->
         <!--
@@ -647,7 +663,7 @@
          └─────────────────────────────────────────────────────┘ -->
     <section class="seccion animar-entrada">
       <div class="contenedor">
-        <div class="tarjeta">
+        <div class="tarjeta seccion-contador">
           <!-- 📝 CAMBIA: el día de la semana -->
           <p class="fecha-dia">Sábado</p>
 
@@ -671,7 +687,7 @@
          └─────────────────────────────────────────────────────┘ -->
     <section class="seccion animar-entrada">
       <div class="contenedor-mediano">
-        <h2 class="titulo-seccion">Faltan..</h2>
+        <h2 class="titulo-seccion">¡Faltan..</h2>
         <div class="cuenta-regresiva-grid">
 
           <div class="cuenta-regresiva-item">
@@ -692,7 +708,7 @@
 
         </div>
       </div>
-        <div class="contenedor-mediano"><h3 class="titulo-seccion">Para este día tan especial</h3></div>
+        <div class="contenedor-mediano" style="padding-top: 1.5rem"><h3 class="titulo-seccion">Para este día tan especial!</h3></div>
     </section>
     <!-- FIN CUENTA REGRESIVA -->
 
@@ -716,7 +732,7 @@
             <!-- Imagen de la iglesia -->
             <!-- 📝 CAMBIA: reemplaza el "src" con una foto real de la iglesia -->
             <div class="imagen-lugar" style="align-content: center; width:200px; margin:auto">
-              <img src="https://www.dropbox.com/scl/fi/ksaczbgopun9zxgzgz5ia/Invitaci-n-virtual-vintage-cuadrada-de-cumplea-os-blanco-y-negro.png?rlkey=p6exlhdadlyq6bvlprwium14b&st=jxsfgh1a&dl=1" alt="Imagen de la iglesia" loading="lazy">
+              <img src="https://www.dropbox.com/scl/fi/5v0vehqedmekwec4enjoq/iglesia.jpeg?rlkey=kuersii0bgp99pfqm1xexh4i7&st=l4pl4nk1&dl=1" alt="Imagen de la iglesia" loading="lazy">
             </div>
 
             <!--
@@ -745,6 +761,7 @@
          │  SECCIÓN 5: RECEPCIÓN (Salón de fiesta)             │
          └─────────────────────────────────────────────────────┘ -->
     <section class="seccion animar-entrada">
+        
       <div class="contenedor">
         <div class="tarjeta" style="padding:0; overflow:hidden;">
           <div style="padding:2rem; text-align:center;">
@@ -760,7 +777,7 @@
             <!-- 📝 CAMBIA: foto del salón -->
             <div class="imagen-lugar">
               <img
-                src="https://i.pinimg.com/originals/c9/c8/76/c9c8767c1bf2484235a056d84314eba5.gif"
+                src="https://www.dropbox.com/scl/fi/lbpv10sftr70mqsaim4pu/salon.jpeg?rlkey=vf28fz4tgnvjxzje9xrwzwwis&st=b3kmbsut&dl=1"
                 alt="Salón de fiesta"
                 loading="lazy"
                 style="margin: auto; width:200px"
