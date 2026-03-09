@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   ╔══════════════════════════════════════════════════════════════════════╗
-  ║         INVITACIÓN DIGITAL - QUINCE AÑOS DE KAMILA NAHOMY           ║
+  ║         INVITACIÓN DIGITAL - QUINCE AÑOS DE SOFÍA RAMÍREZ           ║
   ║                                                                      ║
   ║  Este archivo es la versión en HTML puro del proyecto original       ║
   ║  que estaba hecho con React + TypeScript + Tailwind CSS.             ║
@@ -79,6 +79,7 @@
     }
 
     body {
+      position: relative;
       font-family: var(--fuente-texto);
       background-color: var(--color-fondo-principal);
       color: var(--color-blanco);
@@ -132,7 +133,7 @@
     */
     .contenido-principal {
       /*background-image: url("https://www.dropbox.com/scl/fi/8n7n117g2zymtrxfrqm4h/Black-and-White-Monochrome-Illustrative-Birthday-Celebrations-Presentation-400-x-680-px.png?rlkey=c76rgjtlja4syft8n9zcslb7e&st=p2nc4kdb&dl=1");*/
-      position: relative
+      position: relative;
       z-index: 1;
     }
 
@@ -147,6 +148,10 @@
       background-size: 600px 500px;
       background-repeat: no-repeat;
       background-position: top;
+      }
+    
+      .seccion-misa{
+      background-color: rgba(255, 255, 255, 0.3)
       }
       
     .seccion {
@@ -269,6 +274,7 @@
     .hero-contenido {
       position: relative;
       z-index: 1;
+      text-align: center;
     }
 
     /* ─── Texto introductorio del Hero ─── */
@@ -278,7 +284,7 @@
       color: var();
       letter-spacing: 0em;
       line-height: 1.7;
-      max-width: 450px;
+      max-width: 350px;
       font-weight: 500;
       margin: 0 auto 1rem;
     }
@@ -287,7 +293,7 @@
     /* 📝 CAMBIA el "font-size" para agrandar o achicar el título */
     .hero-titulo {
       font-family: var(--fuente-titulo);
-      font-size: clamp(3rem, 10vw, 4.5rem); /* clamp = mínimo, fluido, máximo */
+      font-size: clamp(2.8rem, 9.5vw, 4.3rem); /* clamp = mínimo, fluido, máximo */
       color: var(--color-blanco);
       letter-spacing: 0.1em;
       text-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
@@ -391,14 +397,13 @@
 
     .lugar-hora {
       font-size: 1.125rem;
-      color: var(--color-acento-azul);
+      color: var(--color--blanco);
       margin-top: 0.25rem;
       font-weight: bold;
     }
 
     /* Contenedor de la imagen del lugar */
     .imagen-lugar {
-      border-radius: 0.75rem;
       overflow: hidden;  /* Oculta lo que sobresalga del borde redondeado */
       margin: 1.25rem 0;
     }
@@ -529,7 +534,7 @@
        ══════════════════════════════════════════════════════
     */
     .gracias-mensaje {
-      color: var(--color-acento-azul);
+      color: var(--color-acento-blanco);
       font-family: var(--fuente-titulo);
       font-size: 1.25rem;
       margin-top: 1rem;
@@ -578,13 +583,13 @@
 /* cada imagen */
 .decoracion1{
   position:absolute;
-  width: clamp(70px, 45vw, 250px); /*MEDIDA DE LA BOLA DISCOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
+  width: clamp(70px, 40vw, 250px);
   opacity:11.3
 }
 
 .decoracion2{
   position:absolute;
-  width: clamp(50px, 25vw, 160px);
+  width:clamp(50px, 25vw, 160px);
   opacity:11.3
 }
 
@@ -596,7 +601,7 @@
 }
 
 .estrella2{
-  bottom:15%;
+  bottom:4%;
   right:-11%;
   transform: rotate(-12deg)
 }
@@ -673,13 +678,71 @@
     /* =============================================
        FIN SECCIÓN DE GLOBOS FLOTANTES
        ============================================= */
+      
+    .hero-decoracion{
+  position: relative;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.hero-tiara{
+  width:250px;
+  display:block;
+  margin:auto;
+}
+
+.hero-linea{
+  width:400px;
+  display:block;
+  margin: -90px auto 0 auto;
+}
+
+/* ajuste para celulares */
+@media (max-width:600px){
+
+  .hero-tiara{
+    width:200px;
+  }
+
+  .hero-linea{
+    width:320px;
+    margin-top:-70px;
+  }
+
+}
+/*LAZOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
+.lazo-posicion {
+  position: absolute;   /* fixed = se queda aunque hagas scroll */
+  top: 27.6%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px
+  width: 300px;
+  max-width: 300px;
+  z-index: 2;     /* número alto para que quede arriba de todo */
+  pointer-events: none; /* para que no bloquee los clics */
+}
+
+.lazo-posicion2 {
+  position: absolute;   /* fixed = se queda aunque hagas scroll */
+  top: 38.9%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px
+  width: 300px;
+  max-width: 300px;
+  z-index: 2;     /* número alto para que quede arriba de todo */
+  pointer-events: none; /* para que no bloquee los clics */
+}
+    
   </style>
 </head>
 
 
 
 <body>
-
+<img class="lazo-posicion" src="lazo2.png" alt="" />
+<img class="lazo-posicion2" src="lazo2.png" alt="" />
 <!-- =============================================
        ★  SECCIÓN DE GLOBOS FLOTANTES  ★
        Los globos suben animados desde abajo.
@@ -755,14 +818,14 @@
         <!-- Texto de apertura -->
         <!-- 📝 CAMBIA: modifica esta frase introductoria -->
         <div>
-        <img src="tiara.png" style="width:230px; margin:0 auto -230px; display: block">
-        <img src="linea.png" style="width:370px; margin:0 auto -160px; display: block">
+        <img src="tiara.png" style="width:215px; margin:0 auto -215px; display: block">
+        <img src="linea.png" style="width:350px; margin:0 auto -140px; display: block">
         <p class="hero-subtitulo" style="width: 385px">
           Hace quince años mis padres daban gracias a Dios por mí. Hoy doy gracias a Dios por ellos, por cuidarme y aconsejarme.</p></div>
 
         <!-- Título principal -->
-        <h1 class="hero-titulo" style="margin-bottom: -30px">Mis 15 años</h1>
-        <img src="kamila_nahomy.png" width=400>
+        <h1 class="hero-titulo" style="margin-bottom: -30px">Mis XV años</h1>
+        <img src="kamila_nahomy.png" width=379 >
 
         <!-- 📝 CAMBIA: escribe el nombre de la quinceañera aquí -->
         <!--<p class="hero-nombre">Kamila Nahomy</p>-->
@@ -780,7 +843,7 @@
           >
             <!-- El icono cambia entre "música" y "pausa" según el estado -->
             <i data-lucide="music" id="icono-musica" style="width:20px;height:20px"></i>
-            <span id="texto-musica">Stop</span>
+            <span id="texto-musica">Reproducir música</span>
           </button>
         </div>
 
@@ -795,7 +858,7 @@
         </audio>
 
       </div>
-      <p class="hero-subtitulo">
+      <p class="hero-subtitulo" style="margin-top: 30px">
       Hoy quiero que seas parte de esta memoria tan especial que siempre llevaré en mi corazón...</p>
     </section>
     <!-- FIN HERO -->
@@ -862,7 +925,7 @@
     <section class="seccion animar-entrada">
       <div class="contenedor">
         <div class="tarjeta" style="padding:0; overflow:hidden;">
-          <div style="padding:2rem; text-align:center;">
+          <div class="seccion-misa" style="padding:2rem; text-align:center;">
 
             <h2 class="titulo-seccion" style="margin-bottom:1.25rem">Misa</h2>
 
@@ -907,7 +970,7 @@
         
       <div class="contenedor">
         <div class="tarjeta" style="padding:0; overflow:hidden;">
-          <div style="padding:2rem; text-align:center;">
+          <div class="seccion-misa" style="padding:2rem; text-align:center;">
 
             <h2 class="titulo-seccion" style="margin-bottom:1.25rem">Recepción</h2>
 
@@ -990,7 +1053,7 @@
           <!-- 📝 CAMBIA: la fecha límite para confirmar -->
           <p class="texto-principal" style="margin-bottom:2rem">
             Tu presencia es muy importante para nosotros.
-            Por favor confirma tu asistencia antes del 1 de mayo.
+            Por favor confirma tu asistencia antes del 20 de abril.
           </p>
 
           <!--
@@ -1397,13 +1460,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
