@@ -278,7 +278,7 @@
       color: var();
       letter-spacing: 0em;
       line-height: 1.7;
-      max-width: 30rem;
+      max-width: 450px;
       font-weight: 500;
       margin: 0 auto 1rem;
     }
@@ -393,6 +393,7 @@
       font-size: 1.125rem;
       color: var(--color-acento-azul);
       margin-top: 0.25rem;
+      font-weight: bold;
     }
 
     /* Contenedor de la imagen del lugar */
@@ -562,10 +563,150 @@
       opacity: 1;
       transform: translateY(0);
     }
+      
+    /* capa de decoraciones */
+.decoraciones{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none; /* para que no estorben clicks */
+}
+
+/* cada imagen */
+.decoracion1{
+  position:absolute;
+  width:250px;
+  opacity:11.3
+}
+
+.decoracion2{
+  position:absolute;
+  width:159px;
+  opacity:11.3
+}
+
+/* posiciones */
+.estrella1{
+  top:-7%;
+  left:-12%;
+  transform: rotate(30deg)
+}
+
+.estrella2{
+  bottom:15%;
+  right:-11%;
+  transform: rotate(-12deg)
+}
+
+.estrella3{
+  bottom:44%;
+  right:-9%;
+  transform: rotate(16deg)
+}
+
+/* contenido encima */
+.contenido{
+  position:relative;
+  z-index:1;
+}
+
+/* =============================================
+       ★  SECCIÓN DE GLOBOS FLOTANTES  ★
+       ============================================= */
+    #globos-flotantes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .globo {
+      position: absolute;
+      bottom: -200px;
+      animation: flotar linear infinite;
+      transform-origin: center bottom;
+    }
+
+    .globo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 18px rgba(80, 140, 255, 0.5));
+    }
+
+    /* Diferentes tamaños y posiciones para cada globo */
+    .globo:nth-child(1)  { width: 80px;  height: 105px; left: 5%;   animation-duration: 12s; animation-delay: 0s;    opacity: 0.85; }
+    .globo:nth-child(2)  { width: 55px;  height: 72px;  left: 15%;  animation-duration: 16s; animation-delay: 2s;    opacity: 0.6;  }
+    .globo:nth-child(3)  { width: 100px; height: 130px; left: 25%;  animation-duration: 14s; animation-delay: 5s;    opacity: 0.9;  }
+    .globo:nth-child(4)  { width: 65px;  height: 85px;  left: 38%;  animation-duration: 10s; animation-delay: 1s;    opacity: 0.7;  }
+    .globo:nth-child(5)  { width: 90px;  height: 117px; left: 50%;  animation-duration: 18s; animation-delay: 3s;    opacity: 0.8;  }
+    .globo:nth-child(6)  { width: 50px;  height: 65px;  left: 62%;  animation-duration: 13s; animation-delay: 7s;    opacity: 0.55; }
+    .globo:nth-child(7)  { width: 75px;  height: 98px;  left: 72%;  animation-duration: 15s; animation-delay: 4s;    opacity: 0.75; }
+    .globo:nth-child(8)  { width: 110px; height: 143px; left: 82%;  animation-duration: 11s; animation-delay: 6s;    opacity: 0.95; }
+    .globo:nth-child(9)  { width: 60px;  height: 78px;  left: 90%;  animation-duration: 17s; animation-delay: 8s;    opacity: 0.65; }
+    .globo:nth-child(10) { width: 85px;  height: 110px; left: 45%;  animation-duration: 20s; animation-delay: 10s;   opacity: 0.8;  }
+    .globo:nth-child(11) { width: 45px;  height: 59px;  left: 8%;   animation-duration: 9s;  animation-delay: 11s;   opacity: 0.5;  }
+    .globo:nth-child(12) { width: 70px;  height: 91px;  left: 55%;  animation-duration: 16s; animation-delay: 13s;   opacity: 0.72; }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0) rotate(-4deg);
+        bottom: -200px;
+        opacity: 0;
+      }
+      5% { opacity: 0.8; }
+      50% { transform: translateY(0) rotate(4deg); }
+      90% { opacity: 0.7; }
+      100% {
+        bottom: calc(100vh + 200px);
+        transform: translateY(0) rotate(-4deg);
+        opacity: 0;
+      }
+    }
+    /* =============================================
+       FIN SECCIÓN DE GLOBOS FLOTANTES
+       ============================================= */
   </style>
 </head>
 
+
+
 <body>
+
+<!-- =============================================
+       ★  SECCIÓN DE GLOBOS FLOTANTES  ★
+       Los globos suben animados desde abajo.
+       Ajusta las clases .globo:nth-child(N) para
+       cambiar tamaño, posición y velocidad.
+       ============================================= -->
+  <div id="globos-flotantes" aria-hidden="true">
+    <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+  <div class="globo"><img src="globo.png" alt="" /></div>
+    </div>
+  <!-- FIN SECCIÓN DE GLOBOS FLOTANTES -->
+    
+    <div class="decoraciones">
+  <img src="bola_disco.png" class="decoracion1 estrella1">
+  <img src="bola_disco.png" class="decoracion1 estrella2">
+  <img src="bola_disco.png" class="decoracion2 estrella3">
+    </div>
 
   <!-- ════════════════════════════════════════════════════════
        FONDO ANIMADO (estrellas parpadeantes)
@@ -611,14 +752,16 @@
     <section class="hero animar-entrada">
         
       <div class="hero-contenido">
-        
         <!-- Texto de apertura -->
         <!-- 📝 CAMBIA: modifica esta frase introductoria -->
-        <div><p class="hero-subtitulo">
+        <div>
+        <img src="tiara.png" style="width:250px; margin:0 auto -250px; display: block">
+        <img src="linea.png" style="width:400px; margin:0 auto -170px; display: block">
+        <p class="hero-subtitulo">
           Hace quince años mis padres daban gracias a Dios por mí. Hoy doy gracias a Dios por ellos, por cuidarme y aconsejarme.</p></div>
 
         <!-- Título principal -->
-        <h1 class="hero-titulo">Mis 15 años</h1>
+        <h1 class="hero-titulo" style="margin-bottom: -30px">Mis 15 años</h1>
         <img src="kamila_nahomy.png" width=400>
 
         <!-- 📝 CAMBIA: escribe el nombre de la quinceañera aquí -->
@@ -637,7 +780,7 @@
           >
             <!-- El icono cambia entre "música" y "pausa" según el estado -->
             <i data-lucide="music" id="icono-musica" style="width:20px;height:20px"></i>
-            <span id="texto-musica">Toca para reproducir</span>
+            <span id="texto-musica">Stop</span>
           </button>
         </div>
 
@@ -731,7 +874,7 @@
 
             <!-- Imagen de la iglesia -->
             <!-- 📝 CAMBIA: reemplaza el "src" con una foto real de la iglesia -->
-            <div class="imagen-lugar" style="align-content: center; width:230px; margin:auto">
+            <div class="imagen-lugar" style="align-content: center; width:370;">
               <img src="iglesia.jpeg" alt="Imagen de la iglesia" loading="lazy">
             </div>
 
@@ -769,7 +912,7 @@
             <h2 class="titulo-seccion" style="margin-bottom:1.25rem">Recepción</h2>
 
             <!-- 📝 CAMBIA: nombre del salón -->
-            <p class="lugar-nombre">Salón de fiestas: Real Cristalppp</p>
+            <p class="lugar-nombre">Salón de fiestas: Real Cristal</p>
 
             <!-- 📝 CAMBIA: hora de inicio de la fiesta -->
             <p class="lugar-hora">19:30 hrs</p>
@@ -1254,7 +1397,6 @@
 
 </body>
 </html>
-
 
 
 
