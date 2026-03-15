@@ -22,6 +22,9 @@
   <title>Mis 15 Años - Kamila Nahomy</title>
 
   <!-- ─── FUENTES DE GOOGLE FONTS ─── -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
   <!--
     Estamos importando dos fuentes:
     - "Cormorant Garamond": fuente elegante estilo serif, usada para títulos
@@ -40,6 +43,7 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
   <style>
+
     /* ══════════════════════════════════════════════════════
        VARIABLES CSS - EL CORAZÓN DEL DISEÑO
        ══════════════════════════════════════════════════════
@@ -50,9 +54,10 @@
        📝 CAMBIA AQUÍ para modificar el esquema de colores:
     */
     :root {
+      --fuente-cursiva: 'Great Vibes', cursive;
       --color-fondo-principal: #0A0E1A;      /* Azul muy oscuro - fondo de toda la página */
       --color-fondo-tarjeta: #0F1729;        /* Azul oscuro - fondo de cada sección/tarjeta */
-      --color-acento-azul: #4169E1;          /* Azul royal - botones y detalles */
+      --color-acento-azul: #89a6ff;          /* Azul royal - botones y detalles */
       --color-acento-azul-hover: #3558C7;    /* Azul más oscuro para el efecto hover */
       --color-plata: #ffffff;                /* Plateado - subtítulos y textos secundarios */
       --color-blanco: #FFFFFF;               /* Blanco puro - textos principales */
@@ -77,10 +82,31 @@
       margin: 0;
       padding: 0;
     }
+/* Títulos grandes: nombre, "Mis XV años" */
+.hero-titulo, .hero-nombre {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+}
 
+/* Títulos de sección: Misa, Galería, Gracias, etc. */
+.titulo-seccion {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem !important;
+}
+
+/* Texto general de toda la página */
+
+
+
+.acompanada-nombre {
+  color: var(--color-blanco);
+  line-height: 1.8;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.6rem !important;
+}
+    
     body {
       position: relative;
-      font-family: var(--fuente-texto);
       background-color: var(--color-fondo-principal);
       color: var(--color-blanco);
       overflow-x: hidden; /* Evita scroll horizontal indeseado */
@@ -291,24 +317,7 @@
 
     /* ─── Título principal "Mis 15 años" ─── */
     /* 📝 CAMBIA el "font-size" para agrandar o achicar el título */
-    .hero-titulo {
-      font-family: var(--fuente-titulo);
-      font-size: clamp(2.8rem, 9.5vw, 4.3rem); /* clamp = mínimo, fluido, máximo */
-      color: var(--color-blanco);
-      letter-spacing: 0.1em;
-      text-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
-      line-height: 1.1;
-    }
 
-    /* ─── Nombre de la quinceañera ─── */
-    /* 📝 CAMBIA el nombre en el HTML más abajo */
-    .hero-nombre {
-      font-family: var(--fuente-titulo);
-      font-size: clamp(2.5rem, 8vw, 3.5rem);
-      color: var(--color-blanco);
-      letter-spacing: 0.05em;
-      margin-top: 0.5rem;
-    }
 
     .hero-botones {
       margin-top: 3rem;
@@ -710,39 +719,161 @@
   }
 
 }
-/*LAZOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
-.lazo-posicion {
-  position: absolute;   /* fixed = se queda aunque hagas scroll */
-  top: 29.4%;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 300px
-  width: 300px;
-  max-width: 300px;
-  z-index: 2;     /* número alto para que quede arriba de todo */
-  pointer-events: none; /* para que no bloquee los clics */
+    
+    
+    /* ══════════════════════════════════════════════════
+   SECCIÓN ACOMPAÑADA POR
+   ══════════════════════════════════════════════════ */
+.acompanada-tarjeta {
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 2rem;
+  text-align: center;
+  background: rgba(15, 23, 41, 0.7);
 }
 
-.lazo-posicion2 {
-  position: absolute;   /* fixed = se queda aunque hagas scroll */
-  top: 40.8%;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 300px
-  width: 300px;
-  max-width: 300px;
-  z-index: 2;     /* número alto para que quede arriba de todo */
-  pointer-events: none; /* para que no bloquee los clics */
+.acompanada-grupo-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-acento-azul);
+  margin-bottom: 0.5rem;
+}
+
+.acompanada-nombre {
+  font-size: 1.2rem;
+  color: var(--color-blanco);
+  line-height: 1.8;
+}
+
+.acompanada-separador {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.2rem 0;
+  color: var(--color-acento-azul);
+  font-size: 0.8rem;
+}
+.acompanada-separador::before,
+.acompanada-separador::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-borde);
+}
+
+/* ══════════════════════════════════════════════════
+   POLAROIDS
+   ══════════════════════════════════════════════════ */
+.polaroids-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding: 2rem 1rem 3rem;
+  flex-wrap: wrap;
+  margin-top: -30px;  /* ← súbelo, entre más negativo más arriba */
+}
+
+.polaroid {
+  background: #fff;
+  padding: 12px 12px 40px 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  width: 160px;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid:nth-child(1) {
+  transform: rotate(-8deg) translateX(-2px) translateY(40px);
+}
+
+.polaroid:nth-child(2) {
+  transform: rotate(9deg) translateY(-30px) translateX(15px);  /* ← agrega translateY negativo */
+}
+
+/* ══════════════════════════════════════════════════
+   SECCIÓN AGRADECIMIENTO - fondo con imagen
+   ══════════════════════════════════════════════════ */
+.seccion-gracias {
+  position: relative;
+  text-align: center;
+  padding: 5rem 1.5rem;
+}
+
+.seccion-gracias::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("k8.JPG"); /* cambia por tu imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+.seccion-gracias * {
+  position: relative;
+  z-index: 1;
+}
+
+.gracias-titulo {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--color-blanco);
+  margin-bottom: 1.5rem;
+}
+
+.gracias-frase-final {
+  font-size: 1.3rem;
+  color: var(--color-blanco);
+  font-style: italic;
+  margin-top: 1.5rem;
 }
     
+    
+/*LAZOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO*/
+none; /* para que no bloquee los clics */
+}
+.galeria-grid {
+  overflow: hidden;
+  gap: 12px
+  width: 100%;
+}
+
+.galeria-fila {
+  display: flex;
+  gap: 10px;
+  height: 200px;
+}
+
+.galeria-fila img {
+  flex: 1;
+  width: 0;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.galeria-fila--60-40 img:first-child { flex: 6; }
+.galeria-fila--60-40 img:last-child  { flex: 4; }
+
+.galeria-fila--40-60 img:first-child { flex: 4; }
+.galeria-fila--40-60 img:last-child  { flex: 6; }
+    
   </style>
+  
 </head>
 
 
 
 <body>
-<div class="lazo-posicion"><img class="lazo-posicion" src="lazo2.png" alt="" /></div>
-<div class="lazo-posicion2"><img class="lazo-posicion" src="lazo2.png" alt="" /></div>
+
 <!-- =============================================
        ★  SECCIÓN DE GLOBOS FLOTANTES  ★
        Los globos suben animados desde abajo.
@@ -914,10 +1045,53 @@
 
         </div>
       </div>
-        <div class="contenedor-mediano" style="padding-top: 1.5rem"><h3 class="titulo-seccion">Para este día tan especial!</h3></div>
+        <div class="contenedor-mediano" style="padding-top: 1.5rem"><h3 class="titulo-seccion">para este día tan especial!</h3></div>
     </section>
     <!-- FIN CUENTA REGRESIVA -->
 
+    
+    <!-- ┌─────────────────────────────────────────────────────┐
+     │  SECCIÓN: ACOMPAÑADA POR                            │
+     └─────────────────────────────────────────────────────┘ -->
+<section class="seccion animar-entrada">
+  <div class="contenedor">
+    <div class="acompanada-tarjeta">
+
+      <h2 class="titulo-seccion" style="margin-bottom:1.5rem">Acompañada por</h2>
+
+      <p class="acompanada-grupo-label">Mis Padres</p>
+      <p class="acompanada-nombre">
+        Benis Francisco Chan Jiménez<br/>
+        Ruth Yolanda Jiménez Torres
+      </p>
+
+      <div class="acompanada-separador">✦</div>
+
+      <p class="acompanada-grupo-label">Mi Madrina de brindis</p>
+      <p class="acompanada-nombre">Mtra. Sandra Beatriz Hernández Jimenez</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- Polaroids debajo de "Acompañada por" -->
+<div class="polaroids-contenedor animar-entrada">
+  <!-- 📝 CAMBIA: pon tus fotos aquí -->
+  <div class="polaroid">
+    <img src="k6.jpeg" alt="Foto 1" />
+  </div>
+  <div class="polaroid">
+    <img src="k9.JPG" alt="Foto 2" />
+  </div>
+</div>
+<!-- FIN ACOMPAÑADA POR -->
+    
+    
+    
+    
+    
+    
+    
 
     <!-- ┌─────────────────────────────────────────────────────┐
          │  SECCIÓN 4: CEREMONIA RELIGIOSA (Iglesia)           │
@@ -927,7 +1101,7 @@
         <div class="tarjeta" style="padding:0; overflow:hidden;">
           <div class="seccion-misa" style="padding:2rem; text-align:center;">
 
-            <h2 class="titulo-seccion" style="margin-bottom:1.25rem">Misa</h2>
+            <h2 class="titulo-seccion fecha" style="margin-bottom:1.25rem">Misa</h2>
 
             <!-- 📝 CAMBIA: nombre de la iglesia -->
             <p class="lugar-nombre">Parroquia: Señor de la Salud</p>
@@ -1014,31 +1188,32 @@
          │  Las fotos se muestran en un carrusel de collages.  │
          │  Cada slide tiene 3 fotos organizadas en un grid.   │
          └─────────────────────────────────────────────────────┘ -->
-    <section class="seccion animar-entrada">
-      <div class="contenedor-mediano">
-        <h2 class="titulo-seccion">Galería</h2>
-        <div class="tarjeta" style="padding:1.5rem;">
+    
+<!-- GALERÍA -->
+<section class="seccion animar-entrada">
+  <div class="contenedor" style="overflow:hidden; margin-bottom: -20px">
+    <div class="galeria-grid">
 
-          <!--
-            📝 CAMBIA LAS FOTOS:
-            El array "fotosGaleria" en el JavaScript (al final del archivo)
-            contiene todas las URLs. Reemplaza esas URLs por las tuyas.
-            Las fotos se agrupan de a 3 automáticamente.
-          -->
-          <div class="galeria-carrusel">
-            <!-- La "pista" se mueve horizontalmente -->
-            <div class="galeria-pista" id="galeria-pista">
-              <!-- Los slides se generan dinámicamente por JavaScript -->
-            </div>
-          </div>
-
-          <!-- Puntos indicadores (se generan con JS) -->
-          <div class="galeria-puntos" id="galeria-puntos"></div>
-
-        </div>
+      <div class="galeria-fila" style="margin-bottom: 10px">
+        <img src="k2.jpeg" alt="foto 1" style="object-position: 42%;"/>
+        <img src="k3.jpeg" alt="foto 2" />
       </div>
-    </section>
-    <!-- FIN GALERÍA -->
+
+      <div class="galeria-fila galeria-fila--60-10-20" style="margin-bottom: 10px">
+        <img src="k5.JPG"/>
+        <img src="k11.jpeg" alt="foto 3" />
+        <img src="k4.jpeg" alt="foto 4" style="object-position: 100% 30%"/>
+      </div>
+
+      <div class="galeria-fila galeria-fila--40-60">
+        <img src="k7.jpeg" alt="foto 5" />
+        <img src="k1.jpeg" alt="foto 6" />
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- FIN GALERÍA -->
 
 
     <!-- ┌─────────────────────────────────────────────────────┐
@@ -1063,7 +1238,7 @@
             - Typeform: typeform.com
           -->
           <a
-            href="https://forms.google.com"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfcUSLrsgelrxdDH6YpCzHMfrfYWwQHbmpiYGMzIcod5Gg_uA/viewform?usp=publish-editor"
             target="_blank"
             rel="noopener noreferrer"
             class="boton-principal"
@@ -1098,7 +1273,7 @@
             "Cualquier persona con el enlace puede editar"
           -->
           <a
-            href="https://drive.google.com"
+            href="https://drive.google.com/drive/folders/1dJBbwl5r08xICcfqjPi3PjqzQWbsbDDA"
             target="_blank"
             rel="noopener noreferrer"
             class="boton-principal"
@@ -1160,10 +1335,10 @@
           <!-- 📝 CAMBIA: imagen que ilustre el estilo de ropa -->
           <div class="vestimenta-imagen">
             <img
-              src="https://www.dropbox.com/scl/fi/20rqjsnrzzxlr1j8d3k7f/Invitaci-n-virtual-vintage-cuadrada-de-cumplea-os-blanco-y-negro-1.png?rlkey=kaj8ozurxwcbfyh20wwu1859r&st=ar5bvdp2&dl=1"
+              src="vestimenta2.png"
               alt="Código de vestimenta formal"
               loading="lazy"
-              style="margin:auto; width: 200px"
+              style="margin:auto; width: 356px"
             />
           </div>
 
@@ -1177,33 +1352,21 @@
     <!-- FIN DRESS CODE -->
 
 
-    <!-- ┌─────────────────────────────────────────────────────┐
-         │  SECCIÓN 11: AGRADECIMIENTO (ThankYou)             │
-         └─────────────────────────────────────────────────────┘ -->
-    <section class="seccion animar-entrada" style="padding-bottom:6rem">
-      <div class="contenedor">
-        <div class="tarjeta">
+  <!-- ┌─────────────────────────────────────────────────────┐
+     │  SECCIÓN: AGRADECIMIENTO                            │
+     └─────────────────────────────────────────────────────┘ -->
+<section class="seccion-gracias animar-entrada">
+  <h2 class="gracias-titulo" style="margin-top: 150px">¡Gracias!</h2>
 
-          <h2 class="titulo-seccion">¡Gracias!</h2>
+  <p class="texto-destacado" style="max-width:500px; margin:0 auto 1rem">
+    Espero contar con tu compañía para celebrar juntos
+    este momento inolvidable.
+  </p>
 
-          <!-- 📝 CAMBIA: mensaje de agradecimiento -->
-          <p class="texto-principal" style="margin-bottom:1rem">
-            Tu presencia es el mejor regalo que puedo recibir
-            en este día tan especial.
-          </p>
+  <p class="gracias-frase-final">Con cariño, Kamila Nahomy Chan Jimenez.</p>
+</section>
+<!-- FIN AGRADECIMIENTO -->
 
-          <p class="texto-destacado" style="margin-bottom:1rem">
-            Espero contar con tu compañía para celebrar juntos
-            este momento inolvidable.
-          </p>
-
-          <!-- Mensaje final destacado en azul -->
-          <p class="gracias-mensaje">¡Te espero con mucho cariño!</p>
-
-        </div>
-      </div>
-    </section>
-    <!-- FIN AGRADECIMIENTO -->
 
 
   </div>
@@ -1314,117 +1477,7 @@
     setInterval(actualizarCuentaRegresiva, 1000);
 
 
-    /* ══════════════════════════════════════════════════════
-       4. GALERÍA DE FOTOS (Carrusel)
-       ══════════════════════════════════════════════════════
-       Creamos un carrusel manual sin librerías externas.
-
-       📝 CAMBIA: reemplaza las URLs del array "fotosGaleria"
-       con las URLs de tus propias fotos.
-       Puedes subir las fotos a:
-       - Google Drive (obtén link de vista directa)
-       - Cloudinary (gratis para uso básico)
-       - Imgur
-    */
-    var fotosGaleria = [
-      "https://www.dropbox.com/scl/fi/ji19j1nmtk5yyge0yzenk/WhatsApp-Image-2026-03-06-at-7.51.23-PM.jpeg?rlkey=0mt4vjh15jawabbjc6a6jhk4l&st=wxt9md3s&dl=1",
-      "https://www.dropbox.com/scl/fi/jiw0rpapl4h26v8ptzoyc/WhatsApp-Image-2026-03-06-at-7.51.24-PM-1.jpeg?rlkey=nfsn2vilgnziomm1nllzyxdau&st=iep636ic&dl=1",
-      "https://www.dropbox.com/scl/fi/bl4ihd7851t9205f4aoe3/WhatsApp-Image-2026-03-06-at-7.51.24-PM-5.jpeg?rlkey=rwt014rk37gg46qzzh5ehtogv&st=afhwps38&dl=1",
-      "https://www.dropbox.com/scl/fi/9lmvuqrnjh4kv4htabkox/WhatsApp-Image-2026-03-06-at-7.51.24-PM-4.jpeg?rlkey=6avtv75ovcvra1bskyx4bdwok&st=ei2sh00r&dl=1",
-      "https://www.dropbox.com/scl/fi/67dc2h7g3d0lvil3958yo/WhatsApp-Image-2026-03-06-at-7.51.25-PM-3.jpeg?rlkey=tu47dif8uvmjagnsa03oelfnv&st=xm3fou42&dl=1",
-      "https://www.dropbox.com/scl/fi/6o5nv4ugw2jqua7qg5g7c/WhatsApp-Image-2026-03-06-at-7.51.24-PM-7.jpeg?rlkey=871j53jyu9yrua8hnpq8be6q2&st=d3275muo&dl=1"
-    ];
-
-    // ─── Agrupar fotos en grupos de 3 (para hacer collages) ───
-    var gruposFotos = [];
-    for (var i = 0; i < fotosGaleria.length; i += 3) {
-      // .slice(inicio, fin) extrae una porción del array
-      gruposFotos.push(fotosGaleria.slice(i, i + 3));
-    }
-
-    // ─── Índice del slide actual ───
-    var slideActual = 0;
-
-    // ─── Construir los slides del carrusel ───
-    var pista  = document.getElementById('galeria-pista');
-    var puntos = document.getElementById('galeria-puntos');
-
-    // Creamos un slide por cada grupo de fotos
-    gruposFotos.forEach(function(grupo, indiceGrupo) {
-      // Crear el elemento div del slide
-      var slide = document.createElement('div');
-      slide.className = 'galeria-slide';
-
-      // Construir el HTML del collage
-      // Usamos template literals (`) para escribir HTML dentro de JS
-      var htmlCollage = '<div class="collage">';
-
-      // Primera foto: ocupa ambas filas (foto grande a la izquierda)
-      if (grupo[0]) {
-        htmlCollage += '<div class="collage-foto-principal">';
-        htmlCollage += '<img src="' + grupo[0] + '" alt="Foto ' + (indiceGrupo * 3 + 1) + '" loading="lazy">';
-        htmlCollage += '</div>';
-      }
-
-      // Segunda y tercera foto: apiladas a la derecha
-      htmlCollage += '<div style="display:flex; flex-direction:column; gap:0.75rem;">';
-      if (grupo[1]) {
-        htmlCollage += '<div class="collage-foto-secundaria" style="flex:1">';
-        htmlCollage += '<img src="' + grupo[1] + '" alt="Foto ' + (indiceGrupo * 3 + 2) + '" loading="lazy">';
-        htmlCollage += '</div>';
-      }
-      if (grupo[2]) {
-        htmlCollage += '<div class="collage-foto-secundaria" style="flex:1">';
-        htmlCollage += '<img src="' + grupo[2] + '" alt="Foto ' + (indiceGrupo * 3 + 3) + '" loading="lazy">';
-        htmlCollage += '</div>';
-      }
-      htmlCollage += '</div>';
-      htmlCollage += '</div>';
-
-      slide.innerHTML = htmlCollage;
-      pista.appendChild(slide); // Añadimos el slide al carrusel
-
-      // ─── Crear el punto indicador para este slide ───
-      var punto = document.createElement('button');
-      punto.className = 'galeria-punto' + (indiceGrupo === 0 ? ' activo' : '');
-      punto.setAttribute('aria-label', 'Ir al slide ' + (indiceGrupo + 1));
-
-      // Al hacer clic en un punto, ir a ese slide
-      punto.addEventListener('click', function() {
-        irASlide(indiceGrupo);
-      });
-
-      puntos.appendChild(punto);
-    });
-
-    // ─── Función para navegar a un slide específico ───
-    function irASlide(indice) {
-      slideActual = indice;
-
-      // Mover la pista: desplazamos 100% × el número del slide
-      // translateX(-100%) mueve un slide completo hacia la izquierda
-      pista.style.transform = 'translateX(-' + (indice * 100) + '%)';
-
-      // Actualizar qué punto está activo
-      var todosPuntos = document.querySelectorAll('.galeria-punto');
-      todosPuntos.forEach(function(p, i) {
-        if (i === indice) {
-          p.classList.add('activo');
-        } else {
-          p.classList.remove('activo');
-        }
-      });
-    }
-
-    // ─── Auto-play: cambiar de slide cada 4 segundos ───
-    // "setInterval" repite la función cada 4000ms
-    setInterval(function() {
-      // Si llegamos al último slide, volvemos al primero
-      var siguienteSlide = (slideActual + 1) % gruposFotos.length;
-      irASlide(siguienteSlide);
-    }, 4000);
-
-
+   
     /* ══════════════════════════════════════════════════════
        5. ANIMACIONES DE ENTRADA AL HACER SCROLL
        ══════════════════════════════════════════════════════
